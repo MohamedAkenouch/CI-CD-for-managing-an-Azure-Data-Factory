@@ -18,7 +18,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(Build.Repository.LocalPath)/ADFIntegration/DevOpsFiles' #replace with the package.json folder, if package file is saved within root foder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+    workingDir: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root foder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
 
 
  
