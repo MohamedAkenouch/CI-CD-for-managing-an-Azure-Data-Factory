@@ -5,7 +5,7 @@ trigger:
 - main #collaboration branch [if the branch is not main, change it to the respective branch name]
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'test'
 steps:
 
 # Installs Node and the npm packages saved in your package.json file in the build
