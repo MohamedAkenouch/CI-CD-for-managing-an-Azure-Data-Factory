@@ -18,7 +18,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root foder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+    workingDir: 'https://github.com/MohamedAkenouch/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root foder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
 
 
  
@@ -31,9 +31,9 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+    workingDir: 'https://github.com/MohamedAkenouch/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
 
-    customCommand: 'run build validate $(Build.Repository.LocalPath)/boa2-adf /subscriptions/f36a6688-6a2a-4f25-992b-4e1a2e48d01f/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/boa2-dev' # Change "ADFIntegration" to the name of your root folder, if there is not root folder, remove that part and keep Build.Repository.LocalPath only.
+    customCommand: 'run build validate https://github.com/MohamedAkenouch/boa2-adf /subscriptions/f36a6688-6a2a-4f25-992b-4e1a2e48d01f/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/boa2-dev' # Change "ADFIntegration" to the name of your root folder, if there is not root folder, remove that part and keep Build.Repository.LocalPath only.
 
   displayName: 'Validate'
 
@@ -43,10 +43,10 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+    workingDir: 'https://github.com/MohamedAkenouch/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
 
 
-    customCommand: 'run build export $(Build.Repository.LocalPath)/boa2-adf /subscriptions/f36a6688-6a2a-4f25-992b-4e1a2e48d01f/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/boa2-dev "ArmTemplate"'  # Change "ADFIntegration" to the name of your root folder, if there is not root folder, remove that part.
+    customCommand: 'run build export https://github.com/MohamedAkenouch/boa2-adf /subscriptions/f36a6688-6a2a-4f25-992b-4e1a2e48d01f/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/boa2-dev "ArmTemplate"'  # Change "ADFIntegration" to the name of your root folder, if there is not root folder, remove that part.
 
 
   displayName: 'Validate and Generate ARM template'
@@ -55,7 +55,7 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles/ArmTemplate' #replace with the package.json folder,if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+    targetPath: 'https://github.com/MohamedAkenouch/boa2-adf/DevOpsFiles/ArmTemplate' #replace with the package.json folder,if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
 
     artifact: 'ArmTemplates'
     publishLocation: 'pipeline'
