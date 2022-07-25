@@ -1,0 +1,9 @@
+{
+	"name": "boa2-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "df3cb66c-abd9-4dbf-a46f-d5afad9da349",
+		"tenantId": "ecd74b1d-0929-4c9a-a850-7ea5501d7ac8"
+	}
+}
