@@ -1,0 +1,61 @@
+# Sample YAML file to validate and export an ARM template into a build artifact
+# Requires a package.json file located in the target repository
+
+trigger:
+- main #collaboration branch [if the branch is not main, change it to the respective branch name]
+
+pool:
+  vmImage: 'ubuntu-latest'
+steps:
+
+# Installs Node and the npm packages saved in your package.json file in the build
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '$(Build.Repository.LocalPath)/ADFIntegration/DevOpsFiles' #replace with the package.json folder, if package file is saved within root foder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+
+
+ 
+    verbose: true
+  displayName: 'Install npm package'
+
+# Validates all of the Data Factory resources in the repository. You'll get the same validation errors as when "Validate All" is selected.
+# Enter the appropriate subscription and name for the source factory.
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+
+    customCommand: 'run build validate $(Build.Repository.LocalPath)/boa2-adf /subscriptions/f36a6688-6a2a-4f25-992b-4e1a2e48d01f/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/boa2-dev' # Change "ADFIntegration" to the name of your root folder, if there is not root folder, remove that part and keep Build.Repository.LocalPath only.
+
+  displayName: 'Validate'
+
+# Validate and then generate the ARM template into the destination folder, which is the same as selecting "Publish" from the UX.
+# The ARM template generated isn't published to the live version of the factory. Deployment should be done by using a CI/CD pipeline. 
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles' #replace with the package.json folder, if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+
+
+    customCommand: 'run build export $(Build.Repository.LocalPath)/boa2-adf /subscriptions/f36a6688-6a2a-4f25-992b-4e1a2e48d01f/resourceGroups/testResourceGroup/providers/Microsoft.DataFactory/factories/boa2-dev "ArmTemplate"'  # Change "ADFIntegration" to the name of your root folder, if there is not root folder, remove that part.
+
+
+  displayName: 'Validate and Generate ARM template'
+
+# Publish the artifact to be used as a source for a release pipeline.
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.Repository.LocalPath)/boa2-adf/DevOpsFiles/ArmTemplate' #replace with the package.json folder,if package file is saved within root folder, remove "DevOpsFiles". if there is no root folder, only keep Build.Repository.LocalPath
+
+    artifact: 'ArmTemplates'
+    publishLocation: 'pipeline'
