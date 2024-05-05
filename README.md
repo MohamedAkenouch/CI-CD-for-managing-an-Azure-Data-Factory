@@ -6,7 +6,7 @@ ADF pipelines are crucial for data analysis and maintaining data quality, but th
 
 ## The Solution: Automation
 
-The good news is that it's precisely the mundane and repetitive pipelines that make ADF pipelines perfect candidates for automation. Because they involve identical actions repeated over, ADF pipelines can be easily automated once you've identified the pattern. You simply populate a single template and let the automation handle the data transfer task. At Antares, we accomplish this using a custom framework that executes over 200 pipelines extracted from various source systems.
+The good news is that it's precisely the mundane and repetitive pipelines that make ADF pipelines perfect candidates for automation. Because they involve identical actions repeated over, ADF pipelines can be easily automated once you've identified the pattern. You simply populate a single template and let the automation handle the data transfer task.
 
 Automating ADF pipelines significantly reduces the development team's workload, particularly in projects with complex data sources. Of course, every project is unique, and the time saved by automating ADF pipelines varies. However, if your project involves numerous ADF pipelines and you can identify emerging patterns, you can expect to save days, if not weeks, of effort through automation.
 
